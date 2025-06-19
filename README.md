@@ -1,6 +1,10 @@
 ## cuda_vel_forward
+
 - cuda speed up for waveform-inversion-vel-to-seis and some findings
 - (500, 1, 70, 70) --> (500, 5, 1000, 70): about 1min on RTX 5090
+
+---
+
 ref: 
 - https://csim.kaust.edu.sa/files/SeismicInversion/Chapter.FD/lab.FD2.8/lab.html
 - https://www.kaggle.com/code/jaewook704/waveform-inversion-vel-to-seis
