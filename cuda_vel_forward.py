@@ -166,7 +166,7 @@ class Vel_Forward(nn.Module):
         self.params = {
             "dx": 10.0,
             "nbc": int(120),
-            "nt": int(1000),
+            "nt": int(1001),
             "dt": 1e-3,
             "isFS": False,
         }
@@ -209,7 +209,7 @@ class Vel_Forward(nn.Module):
                 out_list.append(seis)
 
             #print(f"[INFO] sequential forward done, B={B}, elapsed={time.time() - t0:.3f}s (fallback mode)")
-            return torch.stack(out_list)
+            return torch.stack(out_list)[:, :, 1:, :]
 
 
 def AbcCoef2D(vel, nbc, dx):
