@@ -26,6 +26,5 @@ gen_arr = a(lbl).cpu().numpy()
 ```
 
 ## notes
-MAE与重建误差非常相关，在验证集达到了 0.76的皮尔逊相关系数
-这可以指导训练，例如伴随训练一个Reward Model
+MAE is highly correlated with the reconstruction error, achieving a Pearson correlation coefficient of 0.76 on the validation set. This insight can guide training—for instance, by jointly training a Reward Model alongside the main network.
 ![1.jpg](imgs/1.jpg)
