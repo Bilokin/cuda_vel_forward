@@ -12,7 +12,7 @@ void cuda_acoustic_forward_precomputed(torch::Tensor vpad,
                                       torch::Tensor igx,
                                       torch::Tensor igz,
                                       torch::Tensor output,
-                                      float dx, float dt, int nt, int nbc,
+                                      double dx, double dt, int nt, int nbc,
                                       bool isFS);
 
 // 声明batch processing CUDA 函数
@@ -23,7 +23,7 @@ void cuda_acoustic_forward_batch(torch::Tensor vpad_batch,
                                 torch::Tensor igx,
                                 torch::Tensor igz,
                                 torch::Tensor output_batch,
-                                float dx, float dt, int nt, int nbc,
+                                double dx, double dt, int nt, int nbc,
                                 bool isFS);
 
 void cuda_acoustic_forward_batch_optimized(torch::Tensor vpad_batch,
@@ -33,7 +33,7 @@ void cuda_acoustic_forward_batch_optimized(torch::Tensor vpad_batch,
                                           torch::Tensor igx,
                                           torch::Tensor igz,
                                           torch::Tensor output_batch,
-                                          float dx, float dt, int nt, int nbc,
+                                          double dx, double dt, int nt, int nbc,
                                           bool isFS, int max_concurrent_batches);
 
 
@@ -44,8 +44,8 @@ torch::Tensor acoustic_forward_precomputed_cuda(torch::Tensor vpad,
                                                torch::Tensor isz,
                                                torch::Tensor igx,
                                                torch::Tensor igz,
-                                               float dx = 10.0f,
-                                               float dt = 1e-3f,
+                                               double dx = 10.0f,
+                                               double dt = 1e-3f,
                                                int nt = 1000,
                                                int nbc = 120,
                                                bool isFS = false) {
@@ -64,7 +64,7 @@ torch::Tensor acoustic_forward_precomputed_cuda(torch::Tensor vpad,
     
     // 创建输出张量 (n_src, nt, n_rec)
     auto options = torch::TensorOptions()
-                      .dtype(torch::kFloat32)
+                      .dtype(torch::kFloat64)
                       .device(vpad.device());
     auto output = torch::zeros({n_src, nt, n_rec}, options);
     
@@ -82,8 +82,8 @@ torch::Tensor acoustic_forward_batch_cuda(torch::Tensor vpad_batch,
                                          torch::Tensor isz,
                                          torch::Tensor igx,
                                          torch::Tensor igz,
-                                         float dx = 10.0f,
-                                         float dt = 1e-3f,
+                                         double dx = 10.0f,
+                                         double dt = 1e-3f,
                                          int nt = 1000,
                                          int nbc = 120,
                                          bool isFS = false) {
@@ -103,7 +103,7 @@ torch::Tensor acoustic_forward_batch_cuda(torch::Tensor vpad_batch,
     
     // 创建输出张量 (B, n_src, nt, n_rec)
     auto options = torch::TensorOptions()
-                      .dtype(torch::kFloat32)
+                      .dtype(torch::kFloat64)
                       .device(vpad_batch.device());
     auto output_batch = torch::zeros({B, n_src, nt, n_rec}, options);
     
@@ -121,8 +121,8 @@ torch::Tensor acoustic_forward_batch_optimized_cuda(torch::Tensor vpad_batch,
                                                    torch::Tensor isz,
                                                    torch::Tensor igx,
                                                    torch::Tensor igz,
-                                                   float dx = 10.0f,
-                                                   float dt = 1e-3f,
+                                                   double dx = 10.0f,
+                                                   double dt = 1e-3f,
                                                    int nt = 1000,
                                                    int nbc = 120,
                                                    bool isFS = false,
@@ -143,7 +143,7 @@ torch::Tensor acoustic_forward_batch_optimized_cuda(torch::Tensor vpad_batch,
     
     // 创建输出张量 (B, n_src, nt, n_rec)
     auto options = torch::TensorOptions()
-                      .dtype(torch::kFloat32)
+                      .dtype(torch::kFloat64)
                       .device(vpad_batch.device());
     auto output_batch = torch::zeros({B, n_src, nt, n_rec}, options);
     
