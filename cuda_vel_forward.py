@@ -19,7 +19,7 @@ except ImportError:
     CUDA_AVAILABLE = False
     print("❌ CUDA 扩展未找到，尝试运行 build.py 进行编译")
 
-DTYPE  = torch.float32
+DTYPE  = torch.float64
 
 # ------------------------------------------------------------
 # 1. 工具函数
